@@ -1,0 +1,12 @@
+---
+
+## NOTAS DE DISEÑO
+
+1. **Confirmación Doble**: Email con token único → cliente confirma → cambio de estado
+2. **Disponibilidad**: Verificar horarios + no solapamientos + días libres
+3. **Cancelación**: Requiere X horas de anticipación (configurable por empresa)
+4. **Precios**: Base del servicio + cupón (% o fijo) = precio final
+5. **Recurrencia**: Crea múltiples reservas independientes vinculadas a patrón
+6. **Pagos**: Separados del estado de reserva para mejor control
+7. **Campos Personalizados**: JSON schema por servicio para flexibilidad
+8. **Índices**: Optimizados para búsquedas frecuentes (disponibilidad, agenda)
