@@ -14,14 +14,12 @@ class UsersController extends Controller
     public function index()
     {
         addJavascriptFile('resources/js/pages/users/Users.js');
-
         return view('pages.users.index');
     }
 
     public function listado(Request $request)
     {
         $users = User::where('id', '!=', auth()->id());
-
         return \DataTables::eloquent($users)    
             ->addColumn('role', function ($user) {
                 return ucfirst($user->roles->first()->name);
