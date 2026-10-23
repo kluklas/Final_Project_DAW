@@ -147,7 +147,7 @@ const Users = function () {
                     return false;
                 }
                 let modalForm = instanceModal(response.data.data.modal_id.toString(), response.data.data.view.toString());
-                modalForm.querySelector('#btnSaveUser').addEventListener('click', UpdateUser);
+                modalForm.querySelector('#btnSaveUser').addEventListener('click', updateUser);
                 Options.modal = new KTModal(modalForm);
                 if (originElement) {
                     modalTransitions.openModalWithTransition(modalForm, originElement, { ktInstance: Options.modal });
