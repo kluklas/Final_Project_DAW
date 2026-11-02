@@ -315,6 +315,242 @@
 
 ---
 
+## DIAGRAMA DE MI ARQUITECTURA
+
+```mermaid
+erDiagram
+    USERS {
+        BIGINT id PK
+        VARCHAR name
+        VARCHAR email UK
+        TIMESTAMP email_verified_at
+        VARCHAR password
+        VARCHAR phone
+        ENUM role
+        BIGINT company_id FK
+        BOOLEAN is_active
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    COMPANIES {
+        BIGINT id PK
+        VARCHAR name
+        VARCHAR slug UK
+        VARCHAR email
+        VARCHAR phone
+        VARCHAR website
+        VARCHAR logo_url
+        INT advance_booking_days
+        INT cancellation_notice_hours
+        INT rescheduling_notice_hours
+        ENUM payment_type
+        BOOLEAN requires_confirmation
+        BOOLEAN allow_recurring
+        BOOLEAN is_active
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    SERVICES {
+        BIGINT id PK
+        BIGINT company_id FK
+        VARCHAR name
+        TEXT description
+        INT duration_minutes
+        DECIMAL base_price
+        VARCHAR color
+        BOOLEAN is_active
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    SERVICE_CUSTOM_FIELDS {
+        BIGINT id PK
+        BIGINT service_id FK
+        VARCHAR field_name
+        ENUM field_type
+        JSON options
+        BOOLEAN is_required
+        INT display_order
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    EMPLOYEES {
+        BIGINT id PK
+        BIGINT user_id FK,UK
+        BIGINT company_id FK
+        VARCHAR title
+        TEXT bio
+        BOOLEAN is_active
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    EMPLOYEE_SERVICES {
+        BIGINT id PK
+        BIGINT employee_id FK
+        BIGINT service_id FK
+        TIMESTAMP created_at
+    }
+
+    WORK_SCHEDULES {
+        BIGINT id PK
+        BIGINT employee_id FK
+        INT day_of_week
+        TIME start_time
+        TIME end_time
+        BOOLEAN is_active
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    EMPLOYEE_DAYS_OFF {
+        BIGINT id PK
+        BIGINT employee_id FK
+        DATE date_from
+        DATE date_to
+        VARCHAR reason
+        BOOLEAN is_approved
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    RESERVATIONS {
+        BIGINT id PK
+        BIGINT company_id FK
+        BIGINT service_id FK
+        BIGINT employee_id FK
+        BIGINT client_id FK
+        DATE reservation_date
+        TIME start_time
+        TIME end_time
+        ENUM status
+        VARCHAR confirmation_token
+        TIMESTAMP confirmed_at
+        DECIMAL base_price
+        DECIMAL discount_amount
+        BIGINT coupon_id FK
+        DECIMAL final_price
+        ENUM payment_status
+        ENUM payment_method
+        JSON custom_field_values
+        TEXT client_notes
+        TEXT admin_notes
+        BOOLEAN is_recurring
+        BIGINT recurring_pattern_id FK
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+        TIMESTAMP cancelled_at
+    }
+
+    RECURRING_PATTERNS {
+        BIGINT id PK
+        BIGINT company_id FK
+        VARCHAR name
+        ENUM frequency
+        INT interval
+        VARCHAR days_of_week
+        INT day_of_month
+        DATE repeat_until
+        INT max_occurrences
+        BOOLEAN is_active
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    COUPONS {
+        BIGINT id PK
+        BIGINT company_id FK
+        VARCHAR code
+        TEXT description
+        ENUM discount_type
+        DECIMAL discount_value
+        DECIMAL max_discount_amount
+        DATE valid_from
+        DATE valid_until
+        INT max_uses
+        INT uses_count
+        INT max_uses_per_client
+        JSON applicable_service_ids
+        DECIMAL min_booking_value
+        BOOLEAN is_active
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    COUPON_USAGE {
+        BIGINT id PK
+        BIGINT coupon_id FK
+        BIGINT client_id FK
+        BIGINT reservation_id FK
+        TIMESTAMP used_at
+    }
+
+    PAYMENTS {
+        BIGINT id PK
+        BIGINT reservation_id FK
+        BIGINT company_id FK
+        DECIMAL amount
+        ENUM payment_method
+        ENUM status
+        VARCHAR transaction_id
+        TIMESTAMP payment_date
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    NOTIFICATIONS {
+        BIGINT id PK
+        BIGINT user_id FK
+        BIGINT reservation_id FK
+        ENUM type
+        VARCHAR subject
+        TEXT message
+        TIMESTAMP sent_at
+        TIMESTAMP read_at
+    }
+
+    %% Empresa y usuarios
+    COMPANIES ||--o{ USERS : "tiene"
+    COMPANIES ||--o{ EMPLOYEES : "contrata"
+    USERS ||--o| EMPLOYEES : "perfil de empleado"
+
+    %% Catálogo de servicios
+    COMPANIES ||--o{ SERVICES : "ofrece"
+    SERVICES ||--o{ SERVICE_CUSTOM_FIELDS : "define campos"
+    EMPLOYEES ||--o{ EMPLOYEE_SERVICES : "puede prestar"
+    SERVICES ||--o{ EMPLOYEE_SERVICES : "asignado a"
+
+    %% Disponibilidad de empleados
+    EMPLOYEES ||--o{ WORK_SCHEDULES : "tiene horarios"
+    EMPLOYEES ||--o{ EMPLOYEE_DAYS_OFF : "registra ausencias"
+
+    %% Reservas: entidad central
+    COMPANIES ||--o{ RESERVATIONS : "recibe"
+    SERVICES ||--o{ RESERVATIONS : "se reserva en"
+    EMPLOYEES ||--o{ RESERVATIONS : "atiende"
+    USERS ||--o{ RESERVATIONS : "crea como cliente"
+
+    %% Recurrencia
+    COMPANIES ||--o{ RECURRING_PATTERNS : "define"
+    RECURRING_PATTERNS o|--o{ RESERVATIONS : "origina"
+
+    %% Cupones y uso
+    COMPANIES ||--o{ COUPONS : "gestiona"
+    COUPONS o|--o{ RESERVATIONS : "se aplica a"
+    COUPONS ||--o{ COUPON_USAGE : "registra usos"
+    USERS ||--o{ COUPON_USAGE : "utiliza"
+    RESERVATIONS ||--o| COUPON_USAGE : "documenta uso"
+
+    %% Pagos y notificaciones
+    COMPANIES ||--o{ PAYMENTS : "registra"
+    RESERVATIONS ||--o{ PAYMENTS : "recibe pagos"
+    USERS ||--o{ NOTIFICATIONS : "recibe"
+    RESERVATIONS o|--o{ NOTIFICATIONS : "genera"
+```
+
 ## DIAGRAMA DE RELACIONES
 
 ```

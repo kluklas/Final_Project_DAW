@@ -1,0 +1,228 @@
+/* =============================================
+   SELECT2 — TAILWIND / METRONIC THEME OVERRIDE
+   Primary: #8D52FF | var(--tw-primary)
+   ============================================= */
+
+/* Container — block, full width */
+.select2-container {
+    display: block !important;
+    width: 100% !important;
+}
+
+/* ── Selection box ────────────────────────────────────────────────── */
+.select2-container--default .select2-selection--multiple {
+    min-height: 42px !important;
+    background-color: #fff !important;
+    border: 1px solid #dbdfe9 !important;
+    border-radius: 0.625rem !important;
+    padding: 4px 10px 4px 6px !important;
+    position: relative !important;
+    box-shadow: none !important;
+    cursor: text !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    outline: none !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default.select2-container--open .select2-selection--multiple {
+    border-color: var(--tw-primary, #8D52FF) !important;
+    box-shadow: 0 0 0 3px rgba(141, 82, 255, 0.12) !important;
+}
+
+/* ── Rendered list — block container, chips flow inline ───────────── */
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    display: block !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    overflow: visible !important;
+    line-height: 1.6 !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    list-style: none !important;
+}
+
+/* ── Chip — inline-flex so × and text are flex siblings ───────────── */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+    /* Reset Select2 absolute-position pattern */
+    position: static !important;
+    overflow: visible !important;
+    max-width: none !important;
+    white-space: nowrap !important;
+    /* Spacing */
+    gap: 5px !important;
+    padding: 3px 8px !important;
+    margin: 2px 4px 2px 0 !important;
+    /* Visuals */
+    background-color: #f3e8ff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    color: var(--tw-primary, #8D52FF) !important;
+    line-height: 1.4 !important;
+    transition: background-color 0.15s ease !important;
+    cursor: default !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice:hover {
+    background-color: #e9d5ff !important;
+}
+
+/* Chip text */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    color: var(--tw-primary, #8D52FF) !important;
+    padding: 0 !important;
+    order: 1 !important;
+}
+
+/* ── × remove — reset absolute, put AFTER text ────────────────────── */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    /* Reset Select2's position: absolute */
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    float: none !important;
+    /* Flex order: after text */
+    order: 2 !important;
+    /* Size & style */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 14px !important;
+    height: 14px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 3px !important;
+    background: transparent !important;
+    color: var(--tw-primary, #8D52FF) !important;
+    opacity: 0.55 !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    transition: opacity 0.15s, background-color 0.15s !important;
+    flex-shrink: 0 !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    opacity: 1 !important;
+    background-color: rgba(141, 82, 255, 0.1) !important;
+}
+
+/* ── Search li — inline so it stays on same line as chips ─────────── */
+.select2-container .select2-search--inline {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin: 2px 0 !important;
+    float: none !important;
+}
+
+.select2-container .select2-search--inline .select2-search__field {
+    margin: 0 !important;
+    padding: 2px 4px !important;
+    height: 26px !important;
+    min-width: 60px !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    font-size: 0.875rem !important;
+    color: #252f4a !important;
+    text-align: left !important;
+    direction: ltr !important;
+    vertical-align: middle !important;
+}
+
+.select2-container .select2-search--inline .select2-search__field::placeholder {
+    color: #99a1b7 !important;
+}
+
+/* ── Clear-all button ─────────────────────────────────────────────── */
+.select2-container--default .select2-selection--multiple .select2-selection__clear {
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    cursor: pointer !important;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    color: #99a1b7 !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    transition: color 0.15s !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__clear:hover {
+    color: #4b5563 !important;
+}
+
+/* ── Dropdown panel ──────────────────────────────────────────────── */
+.select2-dropdown {
+    background-color: #fff !important;
+    border: 1px solid #e1e3ea !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    z-index: 9999 !important;
+    overflow: hidden !important;
+    margin-top: 4px !important;
+}
+
+/* ── Options list ────────────────────────────────────────────────── */
+.select2-results__options {
+    padding: 4px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    max-height: 240px !important;
+    overflow-y: auto !important;
+}
+
+/* ── Individual option ───────────────────────────────────────────── */
+.select2-results__option {
+    padding: 9px 14px !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #252f4a !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: background-color 0.12s ease, color 0.12s ease !important;
+    margin: 1px 0 !important;
+}
+
+.select2-results__option--highlighted[aria-selected] {
+    background-color: var(--tw-primary, #8D52FF) !important;
+    color: #fff !important;
+}
+
+.select2-results__option[aria-selected="true"] {
+    background-color: #f3e8ff !important;
+    color: var(--tw-primary, #8D52FF) !important;
+    font-weight: 600 !important;
+}
+
+.select2-results__group {
+    padding: 6px 14px 4px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: #99a1b7 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    cursor: default !important;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+.select2-results__options::-webkit-scrollbar { width: 5px; }
+.select2-results__options::-webkit-scrollbar-thumb {
+    background-color: #dbdfe9;
+    border-radius: 99px;
+}
+.select2-results__options::-webkit-scrollbar-track { background: transparent; }

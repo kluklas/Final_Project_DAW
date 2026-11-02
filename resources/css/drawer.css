@@ -1,0 +1,16 @@
+.resize-handle {
+    position: absolute;
+    width: 10px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    cursor: ew-resize;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #757070;
+}
+.resize-handle:hover {
+    background-color: #757070;
+}

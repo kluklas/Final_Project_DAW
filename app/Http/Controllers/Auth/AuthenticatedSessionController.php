@@ -20,7 +20,6 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         addJavascriptFile('resources/js/auth/login.js');
-
         $view = 'pages.auth.login';
         return view('layouts.auth', compact('view'));
     }
@@ -28,15 +27,11 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
         $request->user()->update([
             'last_login_at' => Carbon::now()->toDateTimeString(),
             'last_login_ip' => $request->getClientIp()
         ]);
-
-
         return response()->json([
             'status' => true,
             'message' => 'Inicio de sesión exitoso',
@@ -47,12 +42,8 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
-
         return response()->json([
             'route' => route('login')
         ]);

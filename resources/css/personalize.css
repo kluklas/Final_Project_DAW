@@ -1,0 +1,52 @@
+.barra {
+    position: absolute;
+    width: 6px;
+    border-radius: 4px;
+    height: 37px;
+    margin-left: -12px;
+    margin-top: -9px;
+}
+
+.barra-detalles {
+    width: 6px;
+    border-radius: 4px;
+    height: 35px;
+    margin-left: -12px;
+    margin-bottom: -10px;
+    display: inline-flex;
+    margin-right: 6px;
+}
+
+div:has(> .barra-detalles) {
+    margin-top: -11px;
+}
+
+
+.botones button {
+    margin: 0 -3px;
+}
+
+.botones label {
+    margin-right: 10px;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.table-border tbody {
+    @apply border-b text-gray-900;
+}
+
+.select{
+    line-height: unset;
+}
+
+.centro{
+    text-align: center !important;
+}
