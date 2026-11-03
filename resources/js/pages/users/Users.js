@@ -4,7 +4,7 @@ import modalTransitions from "../../config/transition.js";
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 import Swal from 'sweetalert2'
-import $ from "jquery";
+import { $, DataTable } from "../../config/dataTables.tailwindcss.js";
 
 const Users = function () {
     let Options = {}
@@ -24,7 +24,7 @@ const Users = function () {
                 url: "./assets/lang/es/es_es.json"
             },
             ajax: {
-                url: route('Users.listado'),
+                url: route('users.listado'),
                 type: 'GET',
                 data: q => {
                     q.search['value'] = document.querySelector('[name="search"]').value;
@@ -34,7 +34,7 @@ const Users = function () {
             },
             columns: [
                 { data: "id", title: '#', width: "1%", sClass: 'text-left vertical-align-middle', searchable: false, responsivePriority: 1 },
-                { data: "nombre", title: 'Nombre', sClass: 'text-left vertical-align-middle', searchable: true, responsivePriority: 1 },
+                { data: "name", title: 'Nombre', sClass: 'text-left vertical-align-middle', searchable: true, responsivePriority: 1 },
                 { data: "email", title: 'Email', sClass: 'text-left vertical-align-middle', searchable: true, responsivePriority: 1 },
                 { data: "role", title: 'Rol', sClass: 'text-left vertical-align-middle', searchable: false },
                 { data: "status", title: 'Estado', sClass: 'text-left vetical-align-middle', searchable: false },
@@ -66,7 +66,7 @@ const Users = function () {
                     orderable: true,
                     render: function (data, type, row, meta) {
                         if (data === 1) {
-                            return `<span class="bade badge-outline badge-success">Activo</span>`;
+                            return `<span class="badge badge-outline badge-success">Activo</span>`;
                         }
                         return `<span class="badge badge-outline badge-danger">Inactivo</span>`;
                     }
@@ -137,7 +137,7 @@ const Users = function () {
 
     function editUserModal(id, originElement = null) {
         if (!originElement) {
-            originElement.document.querySelector(`[data-edit="${id}"]`);
+            originElement = document.querySelector(`[data-edit="${id}"]`);
         }
 
         axios.get(route('users.modal', [id]))
@@ -166,7 +166,7 @@ const Users = function () {
         addSpinner(that);
         cleanErrors(form);
         let id = form.querySelector('input[name="id"]').value;
-        axios.post(route('user.update', [id]), formData)
+        axios.post(route('users.update', [id]), formData)
             .then(response => {
                 if (!response.data.status) {
                     processErrorResponse(response, form, that);
@@ -216,9 +216,9 @@ const Users = function () {
                     toastr.error(response.data.message, 'Error');
                     return false;
                 }
-                let modalForm = instance(response.data.data.modal_id.toString(), response.data.data.view.toString());
+                let modalForm = instanceModal(response.data.data.modal_id.toString(), response.data.data.view.toString());
                 modalForm.querySelector('#btnSaveUser').addEventListener('click', storeUser);
-                Options.modal = new KTModal(modal);
+                Options.modal = new KTModal(modalForm);
                 if (originButton) {
                     modalTransitions.openModalWithTransition(modalForm, originButton, { ktInstance: Options.modal });
                 } else {

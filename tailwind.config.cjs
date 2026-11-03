@@ -1,4 +1,4 @@
-export default{
+module.exports = {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
@@ -44,7 +44,7 @@ export default{
 						}
                     },
                     contextual: {
-                        ligth: {
+                        light: {
                             brand: {
                                 default: '#FF6F1E',
                                 active: '#F15700',
@@ -120,7 +120,7 @@ export default{
 							primary: {
                                 default: '#cf7f9f',
                                 active: '#d091ad',
-                                ligth: '#d1a2ba',
+                                light: '#d1a2ba',
                                 clarity: 'rgba(207, 127, 159, 0.2)',
                                 inverse: '#ffffff'
 							},
@@ -134,7 +134,7 @@ export default{
 							info: {
                                 default: '#d091ad',
                                 active: '#cf7f9f',
-                                ligth: '#d1a2ba',
+                                light: '#d1a2ba',
                                 clarity: 'rgba(207, 127, 159, 0.2)',
                                 inverse: '#ffffff'
 							},
@@ -176,7 +176,7 @@ export default{
                         }
                     }
                 },
-                boxshadows: {
+                boxShadows: {
                     light: {
                         default: '0px 4px 12px 0px rgba(0, 0, 0, 0.09)',
 						light: '0px 3px 4px 0px rgba(0, 0, 0, 0.03)',
@@ -189,7 +189,7 @@ export default{
                     },
                     dark: {
                         default: 'none',
-                        ligth: 'none',
+                        light: 'none',
                         primary: 'none',
                         success: 'none',
                         danger: 'none',

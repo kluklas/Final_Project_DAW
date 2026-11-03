@@ -13,5 +13,9 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-
+    public function index()
+    {
+        // addJavascriptFile('resources/js/pages/dashboards/Dashboards.js');
+        return view('pages.dashboard.dashboard');
+    }
 }

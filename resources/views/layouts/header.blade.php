@@ -3,9 +3,9 @@
         <div class="flex gap-1 lg:hidden items-center -ml-1">
             <a class="shrink-0" href="{{ route('dashboard')}}">
                 <img class="dark:hidden max-h-[50px] w-full"
-                    src="{{asset('assets/media/codeon/logo_icono.png')}}"/>
+                    src="{{asset('assets/media/reservas/logo_icono.png')}}"/>
                 <img class="hidden dark:block max-h-[50px] w-full"
-                    src="{{asset('assets/media/codeon/logo_icono.png')}}"/>
+                    src="{{asset('assets/media/reservas/logo_icono.png')}}"/>
             </a>
             <div class="flex items-center">
                 <button class="btn btn-icon btn-light btn-clear btn-sm" data-drawer-toggle="#sidebar">

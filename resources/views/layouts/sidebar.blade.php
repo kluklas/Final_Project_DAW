@@ -7,16 +7,15 @@
     <div class="sidebar-header hidden lg:flex items-center relative justify-between px-3 lg:px-6 shrink-0"
         id="sidebar_header">
         <a href="{{route('dashboard')}}">
-            <img class="default-logo max-h-[100px]" alt="logo Codeon"
-                src="{{asset('assets/media/codeon/logo_descriptor.png')}}" />
-            <img class="small-logo max-h-[40px]" alt="logo Codeon"
-                src="{{asset('assets/media/codeon/logo_icono.png')}}" />
+            <img class="default-logo max-h-[100px]" alt="logo LMV"
+                src="{{asset('assets/media/reservas/logo_descriptor.png')}}" />
+            <img class="small-logo max-h-[40px]" alt="logo LMV"
+                src="{{asset('assets/media/reservas/logo_icono.png')}}" />
         </a>
         <button
             class="btn btn-icon btn-icon-md size-[30px] rounded-lg border border-gray-200 dark:border-gray-300 bg-light text-gray-500 hover:text-gray-700 toggle absolute left-full top-2/4 -translate-x-2/4 -translate-y-2/4"
             data-toggle="body" data-toggle-class="sidebar-collapse" id="sidebar_toggle">
-            <i
-                class="ki-filled ki-black-left-line {{isset($_COOKIE["sidebar_minimize_state"]) && $_COOKIE["sidebar_minimize_state"] === "on" ? 'rotate-180' : ''}} toggle-active:rotate-180 transition-all duration-300">
+            <i class="ki-filled ki-black-left-line {{isset($_COOKIE["sidebar_minimize_state"]) && $_COOKIE["sidebar_minimize_state"] === "on" ? 'rotate-180' : ''}} toggle-active:rotate-180 transition-all duration-300">
             </i>
         </button>
     </div>
@@ -38,6 +37,24 @@
                         </span>
                     </a>
                 </div>
+                <!-- Only Admin -->
+                @if ($user->hasRole('Admin'))
+                <div class="menu-item {{  request()->routeIs('users.*') ? 'active' : '' }}">
+                    <a href="{{ route('users.index')}}"
+                        class="menu-link flex items-center grow cursor-pointer border border-transparent gap-[10px] pl-[10px] pr-[10px] py-[6px]"
+                        tabindex="0">
+                        <span class="menu-icon items-start text-gray-500 dark:text-gray-400 w-[20px]">
+                            <i class="ki-filled ki-user text-lg">
+                            </i>
+                        </span>
+                        <span
+                            class="menu-title text-sm font-semibold text-gray-700 menu-item-active:text-primary menu-link-hover:!text-primary">
+                            Clientes
+                        </span>
+                    </a>
+                </div>
+                @endif
+                <!-- Only Employee -->
             </div>
         </div>
     </div>

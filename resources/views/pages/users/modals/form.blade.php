@@ -30,14 +30,14 @@
                         Contraseña
                         <span class="text-danger">*</span>
                     </label>
-                    <input name="password" id="passwrod" class="input" placeholder="********" type="password">
+                    <input name="password" id="password" class="input" placeholder="********" type="password">
                 </div>
                 <div class="flex flex-col gap-1 mb-6">
                     <label for="password_repeat" class="form-label font-normal text-gray-900 flex items-center align-middle gap-1 max-w-32">
                         Repetir Contraseña
                         <span class="text-danger">*</span>
                     </label>
-                    <input type="password_repeat" id="password_repeat" class="input" placeholder="********" type="password">
+                    <input name="password_repeat" id="password_repeat" class="input" placeholder="********" type="password">
                 </div>
                 <div class="flex gap-12">
                     <label class="form-label flex items-center gap-2.5 text-nowrap">
