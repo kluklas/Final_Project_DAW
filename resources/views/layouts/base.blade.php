@@ -6,9 +6,9 @@
     <title>{{config('app.name')}}</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="{{asset('assets/media/app/favicon.ico')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/media/app/favicon.ico')}}">
-    <link rel="apple-touch-icon" href="{{asset('assets/media/app/favicon.ico')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/media/app/logo.ico')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/media/app/logo.ico')}}">
+    <link rel="apple-touch-icon" href="{{asset('assets/media/app/logo.ico')}}">
     <link rel="manifest" href="/manifest.json">
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 	<meta property="og:type" content="website" />
